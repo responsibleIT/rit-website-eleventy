@@ -103,4 +103,4 @@ jobs:
             echo "::notice::COOLIFY_DEPLOY_URL not set; image pushed, deploy skipped."
             exit 0
           fi
-          curl --fail-with-body -sS -H "Authorization: Bearer $COOLIFY_TOKEN" "$COOLIFY_DEPLOY_URL"
+          curl --fail-with-body -sS -X POST -H "Authorization: Bearer $COOLIFY_TOKEN" "$COOLIFY_DEPLOY_URL"
