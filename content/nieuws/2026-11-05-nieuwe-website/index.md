@@ -10,4 +10,4 @@ De nieuwe website is ontworpen door studenten van CMD. De banners zijn p5.js-ske
 AI maakten; lees er meer over in het project [Studentenprojecten met p5](/projecten/p5-banners-voor-de-rit-website/).
 
 Iedereen in het lectoraat kan nieuws, projecten en activiteiten toevoegen. De inhoud staat als tekstbestanden
-in een GitHub-repository, en de website wordt automatisch opnieuw gebouwd zodra een wijziging is goedgekeurd.
+in een GitHub-repository, en de website wordt automatisch opnieuw gebouwd zodra een wijziging is goedgekeurd. Zoals deze.
