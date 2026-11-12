@@ -1,0 +1,1244 @@
+# Generated from src/admin/schema.yml by the build. Do not edit.
+backend:
+  name: github
+  repo: responsibleIT/rit-website-eleventy
+  branch: main
+publish_mode: editorial_workflow
+site_url: https://responsible-it.nl
+display_url: https://responsible-it.nl
+locale: nl
+media_folder: content/uploads
+public_folder: /uploads
+slug:
+  encoding: ascii
+  clean_accents: true
+collections:
+  - name: projecten
+    label: Projecten
+    label_singular: Project
+    folder: content/projecten
+    path: '{{slug}}/index'
+    media_folder: ''
+    public_folder: ''
+    create: true
+    slug: '{{title}}'
+    summary: '{{title}} ({{type}}, {{school_year}})'
+    sortable_fields:
+      - title
+      - school_year
+    fields:
+      - name: title
+        label: Titel
+        widget: string
+      - name: type
+        label: Soort project
+        widget: select
+        options:
+          - label: Studentenproject
+            value: student
+          - label: Onderzoeksproject
+            value: research
+      - name: summary
+        label: Korte samenvatting
+        widget: text
+        hint: Voor de projectkaart en zoekmachines. Eén à twee zinnen.
+      - name: school_year
+        label: Studiejaar of jaar
+        widget: string
+        pattern:
+          - ^\d{4}(-\d{4})?$
+          - Bijvoorbeeld 2025-2026 of 2024
+      - name: duration
+        label: Duur
+        widget: string
+        required: false
+        hint: Bijvoorbeeld 'Semester' of '1 jaar'.
+      - name: featured
+        label: Uitgelicht op de homepage
+        widget: boolean
+        default: false
+        required: false
+      - name: draft
+        label: Concept (niet publiceren)
+        widget: boolean
+        default: false
+        required: false
+      - name: sketch
+        label: p5-sketch uit de bibliotheek
+        hint: Wordt bij het bouwen als afbeelding gerenderd. Laat leeg voor de standaardbanner.
+        widget: relation
+        collection: sketches
+        value_field: '{{slug}}'
+        search_fields:
+          - title
+        display_fields:
+          - title
+        required: false
+      - name: sketch_file
+        label: Eigen p5-sketch (.js)
+        widget: file
+        required: false
+        hint: Gaat voor de bibliotheeksketch.
+      - name: sketch_alt
+        label: Beschrijving van de sketch (alt-tekst)
+        widget: string
+        required: false
+      - name: card_image
+        label: Eigen afbeelding voor de projectkaart
+        widget: image
+        required: false
+        hint: Zonder afbeelding gebruikt de kaart de sketch.
+      - name: body
+        label: Uitgebreide beschrijving
+        widget: markdown
+        required: false
+      - name: gallery
+        label: Projectfoto's
+        widget: list
+        required: false
+        fields:
+          - name: image
+            label: Foto
+            widget: image
+          - name: alt
+            label: Beschrijving (alt-tekst)
+            widget: string
+      - name: video
+        label: Video (YouTube/Vimeo-link)
+        widget: string
+        required: false
+      - name: sources
+        label: Bronnen en links
+        widget: list
+        required: false
+        fields:
+          - name: label
+            label: Naam
+            widget: string
+          - name: url
+            label: Link
+            widget: string
+      - name: partners
+        label: Partners
+        widget: relation
+        collection: partners
+        value_field: '{{slug}}'
+        search_fields:
+          - name
+        display_fields:
+          - name
+        multiple: true
+        required: false
+      - name: partner_names
+        label: Overige partners (zonder eigen pagina)
+        widget: list
+        required: false
+      - name: related
+        label: Gerelateerde projecten
+        hint: Leeg = automatisch (zelfde soort, nieuwste eerst).
+        widget: relation
+        collection: projecten
+        value_field: '{{slug}}'
+        search_fields:
+          - title
+        display_fields:
+          - title
+        multiple: true
+        required: false
+      - widget: object
+        required: false
+        fields:
+          - name: label
+            label: Tekst
+            widget: string
+          - name: url
+            label: Link
+            widget: string
+        name: cta
+        label: Knop (bijv. 'Bekijk het spel')
+      - name: programme
+        label: Opleiding (studentenproject)
+        widget: select
+        required: false
+        options:
+          - label: Communication and Multimedia Design
+            value: cmd
+          - label: HBO-ICT
+            value: hbo-ict
+          - label: Media, Informatie en Communicatie
+            value: mic
+          - label: Creative Business
+            value: creative-business
+          - label: Anders
+            value: other
+      - name: level
+        label: Niveau (studentenproject)
+        widget: select
+        required: false
+        options:
+          - label: Associate degree
+            value: associate
+          - label: Bachelor
+            value: bachelor
+          - label: Master
+            value: master
+      - name: unit
+        label: Onderwijseenheid (studentenproject)
+        widget: string
+        required: false
+      - name: study_year
+        label: Jaar van de opleiding (studentenproject)
+        widget: string
+        required: false
+        hint: Bijvoorbeeld 'Jaar 2 + 3'.
+      - name: student_count
+        label: Aantal studenten (studentenproject)
+        widget: number
+        value_type: int
+        required: false
+      - name: scheme
+        label: Regeling/financier (onderzoeksproject)
+        widget: string
+        required: false
+      - name: researchers
+        label: Onderzoekers (onderzoeksproject)
+        widget: relation
+        collection: mensen
+        value_field: '{{slug}}'
+        search_fields:
+          - name
+        display_fields:
+          - name
+        multiple: true
+        required: false
+      - name: sections
+        label: Secties
+        hint: De blokken van de pagina, van boven naar beneden.
+        widget: list
+        required: false
+        types:
+          - name: hero
+            label: Banner (p5)
+            widget: object
+            fields:
+              - name: sketch
+                label: p5-sketch uit de bibliotheek
+                hint: Wordt bij het bouwen als afbeelding gerenderd. Laat leeg voor de standaardbanner.
+                widget: relation
+                collection: sketches
+                value_field: '{{slug}}'
+                search_fields:
+                  - title
+                display_fields:
+                  - title
+                required: false
+              - name: alt
+                label: Beschrijving van de banner (alt-tekst)
+                widget: string
+                required: false
+                hint: Laat leeg om de beschrijving uit de sketchbibliotheek te gebruiken.
+              - name: title
+                label: Titel in kaart
+                widget: string
+                required: false
+                hint: Met titel krijgt de banner een bruine kaart.
+              - name: text
+                label: Tekst in kaart
+                widget: text
+                required: false
+              - name: buttons
+                label: Knoppen
+                widget: list
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                  - name: style
+                    label: Stijl
+                    widget: select
+                    default: primary
+                    options:
+                      - label: Primair (bruin)
+                        value: primary
+                      - label: Secundair (lichtblauw)
+                        value: secondary
+                      - label: Secundair (omlijnd)
+                        value: secondary2
+              - name: download
+                label: Toon 'Download p5 code'
+                widget: boolean
+                default: true
+                required: false
+          - name: intro
+            label: Intro
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: body
+                label: Tekst
+                widget: markdown
+              - name: buttons
+                label: Knoppen
+                widget: list
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                  - name: style
+                    label: Stijl
+                    widget: select
+                    default: primary
+                    options:
+                      - label: Primair (bruin)
+                        value: primary
+                      - label: Secundair (lichtblauw)
+                        value: secondary
+                      - label: Secundair (omlijnd)
+                        value: secondary2
+              - name: aside
+                label: Tekst rechts
+                widget: text
+                required: false
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: aside_link
+                label: Link rechts
+          - name: project-cards
+            label: Projectkaarten
+            widget: object
+            fields:
+              - name: label
+                label: Label boven titel
+                widget: string
+                required: false
+              - name: title
+                label: Titel
+                widget: string
+              - name: source
+                label: Welke projecten
+                widget: select
+                default: featured
+                options:
+                  - label: Uitgelichte projecten (featured)
+                    value: featured
+                  - label: Nieuwste projecten
+                    value: latest
+                  - label: Zelf kiezen
+                    value: manual
+              - name: project_type
+                label: Soort projecten
+                widget: select
+                default: all
+                options:
+                  - label: Alle projecten
+                    value: all
+                  - label: Studentenprojecten
+                    value: student
+                  - label: Onderzoeksprojecten
+                    value: research
+              - name: limit
+                label: Aantal
+                widget: number
+                value_type: int
+                default: 3
+                min: 1
+                max: 12
+              - name: projects
+                label: Gekozen projecten
+                hint: Alleen bij 'Zelf kiezen'.
+                widget: relation
+                collection: projecten
+                value_field: '{{slug}}'
+                search_fields:
+                  - title
+                display_fields:
+                  - title
+                multiple: true
+                required: false
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: all_link
+                label: Link naar alle projecten
+          - name: project-overview
+            label: Projectoverzicht met filters
+            widget: object
+            fields:
+              - name: title
+                label: Titel (voor schermlezers)
+                widget: string
+                required: false
+              - name: project_type
+                label: Soort projecten
+                widget: select
+                default: all
+                options:
+                  - label: Alle projecten
+                    value: all
+                  - label: Studentenprojecten
+                    value: student
+                  - label: Onderzoeksprojecten
+                    value: research
+              - name: filters
+                label: Toon filters
+                widget: boolean
+                default: true
+                required: false
+          - name: text
+            label: Tekst
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+                required: false
+              - name: body
+                label: Tekst
+                widget: markdown
+          - name: text-image
+            label: Tekst met afbeelding
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: body
+                label: Tekst
+                widget: markdown
+              - name: image
+                label: Afbeelding
+                widget: image
+              - name: image_alt
+                label: Beschrijving afbeelding (alt-tekst)
+                widget: string
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: button
+                label: Knop
+          - name: video
+            label: Video
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+                required: false
+              - name: url
+                label: YouTube- of Vimeo-link
+                widget: string
+                pattern:
+                  - ^https://(www\.)?(youtube\.com|youtu\.be|player\.vimeo\.com|vimeo\.com)/
+                  - Gebruik een YouTube- of Vimeo-link
+              - name: video_title
+                label: Titel van de video (voor schermlezers)
+                widget: string
+          - name: accordion
+            label: Uitklapbare documentatie
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+                required: false
+              - name: toc
+                label: Toon inhoudsopgave links
+                widget: boolean
+                default: true
+                required: false
+              - name: items
+                label: Onderdelen
+                widget: list
+                fields:
+                  - name: title
+                    label: Titel
+                    widget: string
+                  - name: body
+                    label: Tekst
+                    widget: markdown
+          - name: news-list
+            label: Nieuwsberichten
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: limit
+                label: Aantal
+                widget: number
+                value_type: int
+                default: 3
+                required: false
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: all_link
+                label: Link naar alle berichten
+          - name: event-list
+            label: Agenda
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: limit
+                label: Aantal
+                widget: number
+                value_type: int
+                default: 3
+                required: false
+              - name: when
+                label: Welke activiteiten
+                widget: select
+                default: upcoming
+                options:
+                  - label: Komende
+                    value: upcoming
+                  - label: Afgelopen
+                    value: past
+                  - label: Alle
+                    value: all
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: all_link
+                label: Link naar de hele agenda
+          - name: people-grid
+            label: Mensen
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: people
+                label: Personen
+                hint: Laat leeg om iedereen te tonen.
+                widget: relation
+                collection: mensen
+                value_field: '{{slug}}'
+                search_fields:
+                  - name
+                display_fields:
+                  - name
+                multiple: true
+                required: false
+          - name: partner-logos
+            label: Partnerlogo's
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: partners
+                label: Partners
+                hint: Laat leeg om alle partners te tonen.
+                widget: relation
+                collection: partners
+                value_field: '{{slug}}'
+                search_fields:
+                  - name
+                display_fields:
+                  - name
+                multiple: true
+                required: false
+  - name: pages
+    label: Pagina's
+    label_singular: Pagina
+    folder: content/pages
+    media_folder: images
+    public_folder: images
+    create: true
+    slug: '{{title}}'
+    fields:
+      - name: title
+        label: Titel
+        widget: string
+      - name: description
+        label: Beschrijving voor zoekmachines
+        widget: text
+        required: false
+      - name: sections
+        label: Secties
+        hint: De blokken van de pagina, van boven naar beneden.
+        widget: list
+        required: false
+        types:
+          - name: hero
+            label: Banner (p5)
+            widget: object
+            fields:
+              - name: sketch
+                label: p5-sketch uit de bibliotheek
+                hint: Wordt bij het bouwen als afbeelding gerenderd. Laat leeg voor de standaardbanner.
+                widget: relation
+                collection: sketches
+                value_field: '{{slug}}'
+                search_fields:
+                  - title
+                display_fields:
+                  - title
+                required: false
+              - name: alt
+                label: Beschrijving van de banner (alt-tekst)
+                widget: string
+                required: false
+                hint: Laat leeg om de beschrijving uit de sketchbibliotheek te gebruiken.
+              - name: title
+                label: Titel in kaart
+                widget: string
+                required: false
+                hint: Met titel krijgt de banner een bruine kaart.
+              - name: text
+                label: Tekst in kaart
+                widget: text
+                required: false
+              - name: buttons
+                label: Knoppen
+                widget: list
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                  - name: style
+                    label: Stijl
+                    widget: select
+                    default: primary
+                    options:
+                      - label: Primair (bruin)
+                        value: primary
+                      - label: Secundair (lichtblauw)
+                        value: secondary
+                      - label: Secundair (omlijnd)
+                        value: secondary2
+              - name: download
+                label: Toon 'Download p5 code'
+                widget: boolean
+                default: true
+                required: false
+          - name: intro
+            label: Intro
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: body
+                label: Tekst
+                widget: markdown
+              - name: buttons
+                label: Knoppen
+                widget: list
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                  - name: style
+                    label: Stijl
+                    widget: select
+                    default: primary
+                    options:
+                      - label: Primair (bruin)
+                        value: primary
+                      - label: Secundair (lichtblauw)
+                        value: secondary
+                      - label: Secundair (omlijnd)
+                        value: secondary2
+              - name: aside
+                label: Tekst rechts
+                widget: text
+                required: false
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: aside_link
+                label: Link rechts
+          - name: project-cards
+            label: Projectkaarten
+            widget: object
+            fields:
+              - name: label
+                label: Label boven titel
+                widget: string
+                required: false
+              - name: title
+                label: Titel
+                widget: string
+              - name: source
+                label: Welke projecten
+                widget: select
+                default: featured
+                options:
+                  - label: Uitgelichte projecten (featured)
+                    value: featured
+                  - label: Nieuwste projecten
+                    value: latest
+                  - label: Zelf kiezen
+                    value: manual
+              - name: project_type
+                label: Soort projecten
+                widget: select
+                default: all
+                options:
+                  - label: Alle projecten
+                    value: all
+                  - label: Studentenprojecten
+                    value: student
+                  - label: Onderzoeksprojecten
+                    value: research
+              - name: limit
+                label: Aantal
+                widget: number
+                value_type: int
+                default: 3
+                min: 1
+                max: 12
+              - name: projects
+                label: Gekozen projecten
+                hint: Alleen bij 'Zelf kiezen'.
+                widget: relation
+                collection: projecten
+                value_field: '{{slug}}'
+                search_fields:
+                  - title
+                display_fields:
+                  - title
+                multiple: true
+                required: false
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: all_link
+                label: Link naar alle projecten
+          - name: project-overview
+            label: Projectoverzicht met filters
+            widget: object
+            fields:
+              - name: title
+                label: Titel (voor schermlezers)
+                widget: string
+                required: false
+              - name: project_type
+                label: Soort projecten
+                widget: select
+                default: all
+                options:
+                  - label: Alle projecten
+                    value: all
+                  - label: Studentenprojecten
+                    value: student
+                  - label: Onderzoeksprojecten
+                    value: research
+              - name: filters
+                label: Toon filters
+                widget: boolean
+                default: true
+                required: false
+          - name: text
+            label: Tekst
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+                required: false
+              - name: body
+                label: Tekst
+                widget: markdown
+          - name: text-image
+            label: Tekst met afbeelding
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: body
+                label: Tekst
+                widget: markdown
+              - name: image
+                label: Afbeelding
+                widget: image
+              - name: image_alt
+                label: Beschrijving afbeelding (alt-tekst)
+                widget: string
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: button
+                label: Knop
+          - name: video
+            label: Video
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+                required: false
+              - name: url
+                label: YouTube- of Vimeo-link
+                widget: string
+                pattern:
+                  - ^https://(www\.)?(youtube\.com|youtu\.be|player\.vimeo\.com|vimeo\.com)/
+                  - Gebruik een YouTube- of Vimeo-link
+              - name: video_title
+                label: Titel van de video (voor schermlezers)
+                widget: string
+          - name: accordion
+            label: Uitklapbare documentatie
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+                required: false
+              - name: toc
+                label: Toon inhoudsopgave links
+                widget: boolean
+                default: true
+                required: false
+              - name: items
+                label: Onderdelen
+                widget: list
+                fields:
+                  - name: title
+                    label: Titel
+                    widget: string
+                  - name: body
+                    label: Tekst
+                    widget: markdown
+          - name: news-list
+            label: Nieuwsberichten
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: limit
+                label: Aantal
+                widget: number
+                value_type: int
+                default: 3
+                required: false
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: all_link
+                label: Link naar alle berichten
+          - name: event-list
+            label: Agenda
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: limit
+                label: Aantal
+                widget: number
+                value_type: int
+                default: 3
+                required: false
+              - name: when
+                label: Welke activiteiten
+                widget: select
+                default: upcoming
+                options:
+                  - label: Komende
+                    value: upcoming
+                  - label: Afgelopen
+                    value: past
+                  - label: Alle
+                    value: all
+              - widget: object
+                required: false
+                fields:
+                  - name: label
+                    label: Tekst
+                    widget: string
+                  - name: url
+                    label: Link
+                    widget: string
+                name: all_link
+                label: Link naar de hele agenda
+          - name: people-grid
+            label: Mensen
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: people
+                label: Personen
+                hint: Laat leeg om iedereen te tonen.
+                widget: relation
+                collection: mensen
+                value_field: '{{slug}}'
+                search_fields:
+                  - name
+                display_fields:
+                  - name
+                multiple: true
+                required: false
+          - name: partner-logos
+            label: Partnerlogo's
+            widget: object
+            fields:
+              - name: title
+                label: Titel
+                widget: string
+              - name: partners
+                label: Partners
+                hint: Laat leeg om alle partners te tonen.
+                widget: relation
+                collection: partners
+                value_field: '{{slug}}'
+                search_fields:
+                  - name
+                display_fields:
+                  - name
+                multiple: true
+                required: false
+      - name: body
+        label: Losse tekst onder de secties
+        widget: markdown
+        required: false
+  - name: nieuws
+    label: Nieuws
+    label_singular: Nieuwsbericht
+    folder: content/nieuws
+    path: '{{slug}}/index'
+    media_folder: ''
+    public_folder: ''
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{title}}'
+    summary: '{{date}} — {{title}}'
+    sortable_fields:
+      - date
+      - title
+    fields:
+      - name: title
+        label: Titel
+        widget: string
+      - name: date
+        label: Datum
+        widget: datetime
+        time_format: false
+        format: YYYY-MM-DD
+      - name: summary
+        label: Korte samenvatting
+        widget: text
+      - name: draft
+        label: Concept (niet publiceren)
+        widget: boolean
+        default: false
+        required: false
+      - name: sketch
+        label: p5-sketch uit de bibliotheek
+        hint: Wordt bij het bouwen als afbeelding gerenderd. Laat leeg voor de standaardbanner.
+        widget: relation
+        collection: sketches
+        value_field: '{{slug}}'
+        search_fields:
+          - title
+        display_fields:
+          - title
+        required: false
+      - name: image
+        label: Afbeelding
+        widget: image
+        required: false
+      - name: image_alt
+        label: Beschrijving afbeelding (alt-tekst)
+        widget: string
+        required: false
+      - name: body
+        label: Tekst
+        widget: markdown
+  - name: agenda
+    label: Agenda
+    label_singular: Activiteit
+    folder: content/agenda
+    path: '{{slug}}/index'
+    media_folder: ''
+    public_folder: ''
+    create: true
+    slug: '{{title}}'
+    summary: '{{start}} — {{title}}'
+    sortable_fields:
+      - start
+      - title
+    fields:
+      - name: title
+        label: Titel
+        widget: string
+      - name: start
+        label: Begint
+        widget: datetime
+        format: YYYY-MM-DDTHH:mm
+      - name: end
+        label: Eindigt
+        widget: datetime
+        format: YYYY-MM-DDTHH:mm
+        required: false
+      - name: location
+        label: Locatie
+        widget: string
+      - name: summary
+        label: Korte samenvatting
+        widget: text
+      - widget: object
+        required: false
+        fields:
+          - name: label
+            label: Tekst
+            widget: string
+          - name: url
+            label: Link
+            widget: string
+        name: registration
+        label: Aanmelden / meer informatie
+      - name: draft
+        label: Concept (niet publiceren)
+        widget: boolean
+        default: false
+        required: false
+      - name: sketch
+        label: p5-sketch uit de bibliotheek
+        hint: Wordt bij het bouwen als afbeelding gerenderd. Laat leeg voor de standaardbanner.
+        widget: relation
+        collection: sketches
+        value_field: '{{slug}}'
+        search_fields:
+          - title
+        display_fields:
+          - title
+        required: false
+      - name: image
+        label: Afbeelding
+        widget: image
+        required: false
+      - name: image_alt
+        label: Beschrijving afbeelding (alt-tekst)
+        widget: string
+        required: false
+      - name: body
+        label: Tekst
+        widget: markdown
+        required: false
+  - name: mensen
+    label: Mensen
+    label_singular: Persoon
+    folder: content/mensen
+    path: '{{slug}}/index'
+    media_folder: ''
+    public_folder: ''
+    create: true
+    slug: '{{name}}'
+    identifier_field: name
+    summary: '{{name}} — {{role}}'
+    fields:
+      - name: name
+        label: Naam
+        widget: string
+      - name: role
+        label: Functie
+        widget: string
+      - name: email
+        label: E-mail
+        widget: string
+        required: false
+        pattern:
+          - ^[^@\s]+@[^@\s]+\.[^@\s]+$
+          - Geen geldig e-mailadres
+      - name: photo
+        label: Foto
+        widget: image
+        required: false
+      - name: photo_alt
+        label: Beschrijving foto
+        widget: string
+        required: false
+      - name: links
+        label: Links
+        widget: list
+        required: false
+        fields:
+          - name: label
+            label: Naam
+            widget: string
+          - name: url
+            label: Link
+            widget: string
+      - name: order
+        label: Volgorde
+        widget: number
+        value_type: int
+        required: false
+        hint: Lager = eerder in de lijst.
+      - name: body
+        label: Over deze persoon
+        widget: markdown
+        required: false
+  - name: partners
+    label: Partners
+    label_singular: Partner
+    folder: content/partners
+    path: '{{slug}}/index'
+    media_folder: ''
+    public_folder: ''
+    create: true
+    slug: '{{name}}'
+    identifier_field: name
+    fields:
+      - name: name
+        label: Naam
+        widget: string
+      - name: url
+        label: Website
+        widget: string
+        required: false
+      - name: logo
+        label: Logo
+        widget: image
+        required: false
+  - name: sketches
+    label: Sketchbibliotheek
+    label_singular: Sketch
+    folder: content/sketches
+    path: '{{slug}}/index'
+    media_folder: ''
+    public_folder: ''
+    create: true
+    slug: '{{title}}'
+    fields:
+      - name: title
+        label: Naam
+        widget: string
+      - name: alt
+        label: Beschrijving (alt-tekst)
+        widget: string
+        hint: Beschrijf wat je ziet
+        bijv. kleuren en vormen.: null
+      - name: sketch_file
+        label: p5-sketch (.js)
+        widget: file
+        hint: 'Statisch: gebruik noLoop() en randomSeed().'
+  - name: settings
+    label: Instellingen
+    files:
+      - name: site
+        label: Website (menu en footer)
+        file: content/_data/site.yml
+        fields:
+          - name: title
+            label: Naam website
+            widget: string
+          - name: description
+            label: Standaardbeschrijving
+            widget: text
+          - name: default_sketch
+            label: Standaardbanner
+            hint: Wordt bij het bouwen als afbeelding gerenderd. Laat leeg voor de standaardbanner.
+            widget: relation
+            collection: sketches
+            value_field: '{{slug}}'
+            search_fields:
+              - title
+            display_fields:
+              - title
+            required: true
+          - name: nav
+            label: Hoofdmenu
+            widget: list
+            fields:
+              - name: label
+                label: Tekst
+                widget: string
+              - name: url
+                label: Link
+                widget: string
+          - name: footer_links
+            label: Footerlinks
+            widget: list
+            required: false
+            fields:
+              - name: label
+                label: Tekst
+                widget: string
+              - name: url
+                label: Link
+                widget: string
+          - name: copyright
+            label: Copyrightregel
+            widget: string

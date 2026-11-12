@@ -1,0 +1,6 @@
+# Image from an already built _site/ (what CI does: it builds once, checks the result, then packages it).
+# For a build from source, use the Dockerfile next to this one.
+FROM nginx:1.30-alpine
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY _site /usr/share/nginx/html
+HEALTHCHECK --interval=30s --timeout=3s CMD wget -qO- http://127.0.0.1/ >/dev/null || exit 1
