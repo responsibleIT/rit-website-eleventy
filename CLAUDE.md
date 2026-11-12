@@ -116,5 +116,6 @@ nginx/default.conf                clean URLs, 301s for the old .html URLs, cachi
 - nginx uses `absolute_redirect off` (correct `Location` behind Coolify's TLS proxy).
 - Sveltia: `publish_mode: editorial_workflow` (edits become PRs). Token sign-in needs a fine-grained
   token with Contents + Pull requests read/write; OAuth needs a `sveltia-cms-auth` helper (not deployed).
-- **Ask before** creating the `responsibleIT/rit-website` repo, pushing, adding secrets, or touching
-  Coolify on RITA.
+- Repo: `github.com/responsibleIT/rit-website-eleventy` (`main`). The ghcr image is still named
+  `ghcr.io/responsibleit/rit-website`.
+- **Ask before** pushing, adding secrets, or touching Coolify on RITA.

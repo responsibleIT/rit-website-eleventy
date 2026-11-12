@@ -10,7 +10,7 @@
 
 backend:
   name: github
-  repo: responsibleIT/rit-website
+  repo: responsibleIT/rit-website-eleventy
   branch: main
   # Editors' changes become pull requests; CI validates them, a reviewer merges.
   # Token sign-in needs a fine-grained token with Contents + Pull requests (read/write).
