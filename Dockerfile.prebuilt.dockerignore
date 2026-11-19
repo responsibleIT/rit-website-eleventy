@@ -1,0 +1,4 @@
+# Context for Dockerfile.prebuilt: only the built site and the nginx config.
+*
+!_site
+!nginx

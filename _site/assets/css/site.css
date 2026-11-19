@@ -1,0 +1,469 @@
+/* Additions on top of the designer's style.css (which leads) and project-detail.css:
+   rendered sketches as images, the overview filters (from template-overzichtpagina/overzicht.css),
+   markdown text, and the types the design does not cover yet (news, agenda, people, partners). */
+
+/* ---------- rendered p5 sketches (were live canvases) ---------- */
+.hero-sketch picture,
+.hero-sketch img,
+.project-detail__sketch picture,
+.project-detail__sketch img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.card-image picture,
+.project-detail__related-card-media picture{
+    display:block;
+    height:100%;
+}
+
+.sketch-missing{
+    display:grid;
+    place-items:center;
+    height:100%;
+    color:#fff;
+    font-weight:700;
+}
+
+/* ---------- markdown text ---------- */
+.prose > * + *{
+    margin-top:1rem;
+}
+
+.prose h2,
+.prose h3{
+    margin-top:2rem;
+    line-height:1.25;
+}
+
+.prose ul,
+.prose ol{
+    padding-left:1.4rem;
+}
+
+.prose ul{
+    list-style:disc;
+}
+
+.prose ol{
+    list-style:decimal;
+}
+
+.prose li + li{
+    margin-top:.4rem;
+}
+
+.prose a{
+    text-decoration:underline;
+    text-underline-offset:.16em;
+    overflow-wrap:anywhere;
+}
+
+.prose img,
+.prose picture{
+    display:block;
+    max-width:100%;
+    height:auto;
+    border-radius:8px;
+}
+
+.content-narrow ol{
+    margin-bottom:1.5rem;
+}
+
+.intro-content .prose p{
+    margin-bottom:1.5rem;
+}
+
+/* ---------- project overview: filters (from overzicht.css) ---------- */
+.project-overview{
+    --filter-border:#7b5b49;
+    --filter-bg:#F5EDD8;
+    --filter-active-bg:#ecdfbf;
+    --filter-ink:var(--brown);
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(11rem, 14.5rem)) 1fr;
+    gap:clamp(1rem, 3.4vw, 2.55rem);
+    align-items:center;
+    margin-block-end:3rem;
+}
+
+.filters label{
+    min-width:0;
+}
+
+.filters select{
+    width:100%;
+    min-height:3.125rem;
+    padding:.2rem 3.2rem .2rem 1.25rem;
+    border:.12rem solid var(--filter-border);
+    border-radius:.25rem;
+    appearance:none;
+    background-color:var(--filter-bg);
+    background-image:
+        linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position:calc(100% - 1.3rem) 50%, calc(100% - .95rem) 50%;
+    background-size:.42rem .42rem, .42rem .42rem;
+    background-repeat:no-repeat;
+    color:var(--filter-ink);
+    cursor:pointer;
+    font:inherit;
+    transition:background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.filters select:hover{
+    border-color:var(--brown);
+    box-shadow:0 0 0 .18rem rgb(81 40 23 / 18%);
+}
+
+.filters select:focus-visible{
+    outline:3px solid var(--brown);
+    outline-offset:2px;
+}
+
+.filters select:active{
+    background-color:var(--filter-active-bg);
+}
+
+.project-count{
+    justify-self:end;
+    font-weight:750;
+    white-space:nowrap;
+}
+
+.no-results,
+.empty-state{
+    padding:1rem 1.25rem;
+    margin-bottom:2rem;
+    border:.12rem solid var(--brown);
+    border-radius:.5rem;
+    background:#F5EDD8;
+    font-weight:700;
+}
+
+.project-grid > li{
+    display:flex;
+}
+
+.project-grid > li > .project-card{
+    flex:1;
+}
+
+.project-grid > li[hidden]{
+    display:none;
+}
+
+.project-grid > li.empty-state{
+    grid-column:1 / -1;
+}
+
+/* ---------- hero card on list/news/agenda pages ---------- */
+.hero-kicker{
+    margin-bottom:.5rem !important;
+    font-size:.9rem;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+}
+
+.about-hero .hero-image{
+    height:420px;
+}
+
+/* ---------- documentation block ---------- */
+.toc-link{
+    padding:0;
+    border:0;
+    background:none;
+    color:inherit;
+    font:inherit;
+    text-align:left;
+    cursor:pointer;
+}
+
+.toc-link:focus-visible{
+    outline:3px solid var(--brown);
+    outline-offset:3px;
+}
+
+.documentation-layout--no-toc{
+    grid-template-columns:1fr;
+}
+
+/* ---------- project detail: body text and blocks on the dark page ---------- */
+.project-detail__section--body,
+.project-detail__section--video{
+    padding-block:2rem;
+}
+
+.project-detail__section--body .prose{
+    max-width:50rem;
+    font-size:1.1rem;
+}
+
+.project-detail__sections{
+    background:var(--beige);
+    color:var(--brown);
+}
+
+.project-detail .video-container{
+    max-width:60rem;
+}
+
+/* ---------- news cards ---------- */
+.card-date{
+    margin-bottom:.5rem;
+    font-size:.9rem;
+    font-weight:700;
+}
+
+/* ---------- agenda ---------- */
+.event-items{
+    display:grid;
+    gap:1.25rem;
+}
+
+.event-item{
+    display:grid;
+    grid-template-columns:10rem 1fr;
+    gap:1.5rem;
+    padding:1.5rem;
+    border-radius:12px;
+    background:#F5EDD8;
+}
+
+.event-date{
+    font-weight:800;
+    font-size:1.1rem;
+}
+
+.event-item h3 a{
+    text-decoration:underline;
+    text-underline-offset:.16em;
+}
+
+.event-meta{
+    font-weight:700;
+    margin-bottom:.4rem;
+}
+
+.event-facts{
+    display:grid;
+    gap:.5rem;
+    margin-bottom:2rem;
+}
+
+.event-facts div{
+    display:grid;
+    grid-template-columns:8rem 1fr;
+}
+
+.event-facts dt{
+    font-weight:800;
+}
+
+.article-image{
+    margin-bottom:2rem;
+    border-radius:8px;
+}
+
+/* ---------- people ---------- */
+.person-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(12rem, 1fr));
+    gap:2rem;
+}
+
+.person-card{
+    display:grid;
+    justify-items:center;
+    gap:.4rem;
+    padding:1.5rem;
+    border-radius:12px;
+    background:#F5EDD8;
+    text-align:center;
+    transition:transform 240ms ease;
+}
+
+.person-card:hover,
+.person-card:focus-visible{
+    transform:translateY(-.25rem);
+}
+
+.person-card img,
+.person-photo{
+    width:8rem;
+    height:8rem;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.person-initials{
+    display:grid;
+    place-items:center;
+    width:8rem;
+    height:8rem;
+    border-radius:50%;
+    background:var(--blue);
+    color:var(--brown);
+    font-size:2.25rem;
+    font-weight:800;
+}
+
+.person-initials--large,
+.person-photo{
+    width:11rem;
+    height:11rem;
+    flex:none;
+}
+
+.person-name{
+    font-weight:800;
+}
+
+.person-role{
+    font-size:.95rem;
+}
+
+.person-page{
+    padding-block:4rem;
+}
+
+.person-header{
+    display:flex;
+    gap:2.5rem;
+    align-items:center;
+    margin-bottom:2.5rem;
+}
+
+.person-header h1{
+    margin-bottom:.25rem;
+}
+
+.person-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+}
+
+.person-links a,
+.person-header a{
+    text-decoration:underline;
+    text-underline-offset:.16em;
+}
+
+/* ---------- partners ---------- */
+.partner-items{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(12rem, 1fr));
+    gap:1.5rem;
+}
+
+.partner-item{
+    display:grid;
+    place-items:center;
+    min-height:7rem;
+    padding:1.25rem;
+    border-radius:12px;
+    background:#F5EDD8;
+    text-align:center;
+    font-weight:800;
+}
+
+.partner-item img{
+    max-height:4rem;
+    width:auto;
+    object-fit:contain;
+}
+
+a.partner-item:hover{
+    background:#fff8ea;
+}
+
+/* ---------- small screens ---------- */
+@media(max-width:900px){
+    .filters{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .project-count{
+        justify-self:start;
+    }
+}
+
+@media(max-width:700px){
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .event-item{
+        grid-template-columns:1fr;
+        gap:.5rem;
+    }
+
+    .person-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+/* ---------- header: five menu items instead of three ---------- */
+.main-nav ul{
+    gap:.25rem;
+}
+
+.main-nav a{
+    padding:1rem .75rem;
+    white-space:nowrap;
+}
+
+/* Between phone and wide desktop the menu gets its own row under the logo. */
+@media(max-width:1200px) and (min-width:701px){
+    .header-inner{
+        flex-wrap:wrap;
+        row-gap:0;
+        padding-block:.75rem 0;
+    }
+
+    .main-nav{
+        order:3;
+        width:100%;
+    }
+
+    .main-nav ul{
+        flex-wrap:wrap;
+        margin-left:-.75rem;
+    }
+}
+
+.main-nav a[aria-current="page"]{
+    font-weight:700;
+}
+
+/* eleventy-img adds width/height attributes; let the template's aspect-ratio win. */
+.project-detail__related-card-image,
+.project-detail__gallery-list img,
+.prose img{
+    height:auto;
+}
+
+/* Long titles in the detail hero (uppercase, max 12em) must wrap instead of overflowing. */
+.project-detail h1{
+    overflow-wrap:break-word;
+    hyphens:auto;
+}
+
+.project-overview{
+    padding-top:5rem;
+}
+
+.p5-hero + .projects-section{
+    padding-top:5rem;
+}

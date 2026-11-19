@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Beheer — Responsible IT</title>
+  <!-- Sveltia CMS reads ./config.yml, which the build generates from src/admin/schema.yml. -->
+  <script src="https://unpkg.com/@sveltia/cms@0.259.0/dist/sveltia-cms.js" type="module"></script>
+  <script type="module">
+    // Show previews in the site's own style.
+    const ready = setInterval(() => {
+      if (!window.CMS) return;
+      clearInterval(ready);
+      for (const href of ["/assets/css/style.css", "/assets/css/site.css"]) {
+        try { window.CMS.registerPreviewStyle(href); } catch { /* not supported by this version */ }
+      }
+    }, 50);
+  </script>
+</head>
+<body></body>
+</html>
