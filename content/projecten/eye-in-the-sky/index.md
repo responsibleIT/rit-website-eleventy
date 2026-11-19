@@ -25,6 +25,7 @@ student_count: 6
 scheme: ''
 researchers:
   - bas-pijls
+  - yuri-westplat
 sections: []
 ---
 
