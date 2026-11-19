@@ -29,4 +29,4 @@ researchers:
 sections: []
 ---
 
-Hoe ervaren mensen het om door een vliegend AI‑surveillancesysteem ongevraagd gevolgd, gefilmd en en geanalyseerd te worden, en hun beeld en classificaties zichtbaar zijn op een feed, en hoe kunnen we de aannames, fouten en vooroordelen in zulke systemen zichtbaar en bespreekbaar maken? Studenten ontwikkelen een “Dark” concept dat deze vragen beantwoord.
+Studenten ontwikkelen een “Dark” concept die de volgende vragen beantwoord. Hoe ervaren mensen het om door een vliegend AI‑surveillancesysteem ongevraagd gevolgd, gefilmd en en geanalyseerd te worden, en hun beeld en classificaties zichtbaar zijn op een feed, en hoe kunnen we de aannames, fouten en vooroordelen in zulke systemen zichtbaar en bespreekbaar maken? 
