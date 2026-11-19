@@ -115,7 +115,8 @@ docker compose run --rm cli npm test
 docker compose run --rm cli npm run build
 ```
 
-De technische opzet staat in [CLAUDE.md](CLAUDE.md). Het inhoudsmodel (welke velden er zijn) staat in
+De technische opzet staat in [CLAUDE.md](CLAUDE.md). Hoe het inloggen met GitHub in `/admin` is ingericht
+(OAuth App, hulpserver op Coolify) staat in [cms-auth/README.md](cms-auth/README.md). Het inhoudsmodel (welke velden er zijn) staat in
 `src/admin/schema.yml`: dat bestand stuurt zowel de beheeromgeving als de controle.
 
 ### Performance
