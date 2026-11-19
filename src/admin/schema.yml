@@ -12,6 +12,8 @@ backend:
   name: github
   repo: responsibleIT/rit-website-eleventy
   branch: main
+  # "Sign in with GitHub" goes through our OAuth helper (cms-auth/, Coolify app rit-cms-auth).
+  base_url: https://cms-auth.responsible-it.nl
   # Editors' changes become pull requests; CI validates them, a reviewer merges.
   # Token sign-in needs a fine-grained token with Contents + Pull requests (read/write).
 
