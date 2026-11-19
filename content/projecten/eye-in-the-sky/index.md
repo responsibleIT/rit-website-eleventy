@@ -19,7 +19,7 @@ related: []
 cta: null
 programme: ''
 level: bachelor
-unit: HBO-ICT
+unit: Dark Tech Studio HBO-ICT
 study_year: 2+3
 student_count: 6
 scheme: ''
@@ -29,4 +29,4 @@ researchers:
 sections: []
 ---
 
-Studenten ontwikkelen een “Dark” concept die de volgende vragen beantwoord. Hoe ervaren mensen het om door een vliegend AI‑surveillancesysteem ongevraagd gevolgd, gefilmd en en geanalyseerd te worden, en hun beeld en classificaties zichtbaar zijn op een feed, en hoe kunnen we de aannames, fouten en vooroordelen in zulke systemen zichtbaar en bespreekbaar maken? 
+Studenten ontwikkelen een “Dark” concept die de volgende vragen beantwoord. Hoe ervaren mensen het om door een vliegend AI‑surveillancesysteem ongevraagd gevolgd, gefilmd en en geanalyseerd te worden, en hun beeld en classificaties zichtbaar zijn op een feed, en hoe kunnen we de aannames, fouten en vooroordelen in zulke systemen zichtbaar en bespreekbaar maken?
